@@ -11,8 +11,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Embeddable // 포함될 수 있는 [복합키]
 //복합키가 있는 class는 Serializable를 implements 해줘야함
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserFollowIds implements Serializable {
     private Long fromUserId;
     private Long toUserId;

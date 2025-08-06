@@ -9,10 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 public class UserFollow extends CreatedAt{
     @EmbeddedId
-    private UserFollowIds fromUserId;
+    private UserFollowIds userFollowIds;
 
+    //관계 설정(FK)`
     @ManyToOne
     @MapsId("fromUserId")
     @JoinColumn(name="from_user_id")
