@@ -1,17 +1,14 @@
 package com.green.gallery_jwt_jpa.greengram.application.user.model;
 
-import com.green.gallery_jwt_jpa.greengram.config.enumcode.EnumUserRole;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Getter
 @ToString
-public class UserSignReq {
-    @NotNull(message = "아이디는 필수로 입력하셔야 합니다.")
+public class UserSignInReq {
+    @NotNull(message = "아이디는 필수로 입력하셔야 합니다")
     @Pattern(regexp = "^[A-Za-z0-9_]{4,50}$", message = "아이디는 영어,한국어,언더바로만 사용이 가능하며 4~50자 까지 작성할 수 있습니다.")
     private String uid;
 
@@ -21,9 +18,4 @@ public class UserSignReq {
             message = "비밀번호는 영문자, 숫자, 특수기호로 이루어져야 합니다."
     )
     private String upw;
-
-    @Pattern(regexp = "^[가-힣]{2,10}$", message = "닉네임은 한글로 2~10자 까지만 가능합니다.")
-    private String nickName;
-
-    private List<EnumUserRole> roles;
 }
