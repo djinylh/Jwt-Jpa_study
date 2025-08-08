@@ -2,12 +2,15 @@ package com.green.gallery_jwt_jpa.greengram.entity;
 
 import com.green.gallery_jwt_jpa.greengram.entity.UpdatedAt;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @EqualsAndHashCode
 public class Feed extends UpdatedAt {
@@ -24,6 +27,26 @@ public class Feed extends UpdatedAt {
 
     @Column(length = 1_000)
     private String contents;
+
+    //양방형 관계 설정
+    @Builder.Default // builder 패턴 이용시 null이 되는데 이 애노테이션을 주면 주소값이 생성됩니다.
+    @OneToMany(mappedBy="feed", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FeedPic>  feedPicList = new ArrayList<>(1);
+
+    public void addFeedPics(List<String> picFileNames){
+        for (String picFileName : picFileNames) {
+            FeedPicIds feedPicIds = FeedPicIds.builder()
+                                                .feedId(this.feedId)
+                                                .pic(picFileName)
+                                                .build();
+            FeedPic feedPic = FeedPic.builder()
+                                        .feedPicIds(feedPicIds)
+                                        .feed(this)
+                                        .build();
+            this.feedPicList.add(feedPic);
+        }
+    }
+
 
 
 

@@ -2,12 +2,12 @@ package com.green.gallery_jwt_jpa.greengram.entity;
 
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @EqualsAndHashCode
 public class FeedPic extends CreatedAt{

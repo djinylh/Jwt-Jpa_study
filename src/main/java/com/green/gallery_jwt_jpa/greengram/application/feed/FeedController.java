@@ -27,8 +27,9 @@ public class FeedController {
     public ResultResponse<?> postFeed(@AuthenticationPrincipal UserPrincipal userPrincipal, @Valid @RequestPart FeedPostReq req, @RequestPart(name="pic") List<MultipartFile> pics) {
 
         log.info("signUserId :{}", userPrincipal.getSignUserId());
-        log.info("pics : {}", pics);
+        log.info("pics : {}", pics.size());
         log.info("req :{}", req);
-        return new ResultResponse<>("",null);
+        feedService.postFeed(userPrincipal.getSignUserId(), req,pics);
+        return new ResultResponse<>("피드 등록 완료",null);
     }
 }
