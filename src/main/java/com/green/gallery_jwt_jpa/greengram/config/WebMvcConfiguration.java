@@ -42,11 +42,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                       if(resource.exists() && resource.isReadable()) {
                           return resource;
                       }
-
                       return new ClassPathResource("/static/index.html");
                   }
                 });
     }
+
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         //RestController 애노테이션이 있는 컨트롤러의 주소 앞에 /api를 모두 붙여준다
